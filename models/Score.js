@@ -65,12 +65,12 @@ score = {
         if (!result) {
             return {
                 code: sc.BAD_REQUEST,
-                json: au.successFalse(rm.BOARD_READ_ALL_FAIL)
+                json: au.successFalse(rm.SCORE_READ_FAIL)
             };
         }
         return {
             code: sc.OK,
-            json: au.successTrue(rm.BOARD_READ_ALL_SUCCESS, result)
+            json: au.successTrue(rm.SCORE_READ_SUCCESS, result)
         };
     }
 }

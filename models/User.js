@@ -41,7 +41,6 @@ module.exports = {
         const values = [id, password, nickname];
         return pool.queryParam_Parse(`INSERT INTO ${table}(${fields}) VALUES(${questions})`, values)
             .then(result => {
-                console.log('???-')
                 if(result.code && result.json) return result;
                 const userId = result.insertId;
                 return {

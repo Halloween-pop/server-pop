@@ -1,68 +1,67 @@
-const poolPromise = require('../../config/dbConfig');
+// 프로미스를 반환하는 코드
+// resolve와 reject로 나누어지기 때문에 result를 상수로 선언이 가능해진다.
+// 에러가 발생하면 다음으로 에러를 넘긴다.
 
+const poolPromise = require('../../config/dbConfig');
 module.exports = {
-    queryParam_None: async (...args) => {
-        const query = args[0]
-        let result
-        const pool = await poolPromise;
-        try {
-            var connection = await pool.getConnection() // connection을 pool에서 하나 가져온다.
-            result = await connection.query(query) || null // query문의 결과 || null 값이 result에 들어간다.
-        } catch (err) {
-            console.log(err)
-            connection.rollback(() => {})
-        } finally {
-            pool.releaseConnection(connection) // waterfall 에서는 connection.release()를 사용했지만, 이 경우 pool.releaseConnection(connection) 을 해준다.
-            return result
-        }
+    queryParam_None: async (query) => {
+        return new Promise(async (resolve, reject) => {
+            try {
+                const pool = await poolPromise;
+                const connection = await pool.getConnection();
+                try {
+                    const result = await connection.query(query);
+                    pool.releaseConnection(connection);
+                    resolve(result);
+                } catch (err) {
+                    pool.releaseConnection(connection);
+                    reject(err);
+                }
+            } catch (err) {
+                reject(err);
+            }
+        });
     },
     queryParam_Arr: async (...args) => {
-        const query = args[0]
-        const value = args[1] // array
-        let result
-        try {
-            var connection = await pool.getConnection() // connection을 pool에서 하나 가져온다.
-            result = await connection.query(query, value) || null // 두 번째 parameter에 배열 => query문에 들어갈 runtime 시 결정될 value
-        } catch (err) {
-            connection.rollback(() => {})
-            next(err)
-        } finally {
-            pool.releaseConnection(connection) // waterfall 에서는 connection.release()를 사용했지만, 이 경우 pool.releaseConnection(connection) 을 해준다.
-            return result
-        }
+        this.queryParam_Parse(args[0], args[1]);
     },
-    queryParam_Parse: async (inputquery, inputvalue) => {
-        const query = inputquery
-        const value = inputvalue
-        let result
-        try {
-            var connection = await pool.getConnection()
-            result = await connection.query(query, value) || null
-            console.log(result)
-        } catch (err) {
-            console.log(err)
-            connection.rollback(() => {})
-            next(err)
-        } finally {
-            pool.releaseConnection(connection)
-            return result
-        }
+    queryParam_Parse: async (query, value) => {
+        return new Promise(async (resolve, reject) => {
+            try {
+                const pool = await poolPromise;
+                const connection = await pool.getConnection();
+                try {
+                    const result = await connection.query(query, value);
+                    pool.releaseConnection(connection);
+                    resolve(result);
+                } catch (err) {
+                    pool.releaseConnection(connection);
+                    reject(err);
+                }
+            } catch (err) {
+                reject(err);
+            }
+        });
     },
     Transaction: async (...args) => {
-        let result = "Success"
-
-        try {
-            var connection = await pool.getConnection()
-            await connection.beginTransaction()
-            await args[0](connection, ...args)
-            await connection.commit()
-        } catch (err) {
-            await connection.rollback()
-            console.log("mysql error! err log =>" + err)
-            result = undefined
-        } finally {
-            pool.releaseConnection(connection)
-            return result
-        }
+        return new Promise(async (resolve, reject) => {
+            try {
+                const pool = await poolPromise;
+                const connection = await pool.getConnection();
+                try {
+                    await connection.beginTransaction();
+                    args.forEach(async (it) => await it(connection));
+                    await connection.commit();
+                    pool.releaseConnection(connection);
+                    resolve(result);
+                } catch (err) {
+                    await connection.rollback()
+                    pool.releaseConnection(connection);
+                    reject(err);
+                }
+            } catch (err) {
+                reject(err);
+            }
+        });
     }
 }

@@ -8,7 +8,7 @@ const table = 'user';
 
 module.exports = {
     signin: ({id, password}) => {
-        const query = `SELECT * FROM ${table} WHERE id = ${id}`;
+        const query = `SELECT * FROM ${table} WHERE id = "${id}"`;
         return pool.queryParam_None(query)
             .then(async (userReturn) => {
                 if(userReturn.length == 0) {
@@ -40,7 +40,8 @@ module.exports = {
         const questions = `?,?,?`;
         const values = [id, password, nickname];
         return pool.queryParam_Parse(`INSERT INTO ${table}(${fields}) VALUES(${questions})`, values)
-            .then (result => {
+            .then(result => {
+                console.log('???-')
                 if(result.code && result.json) return result;
                 const userId = result.insertId;
                 return {
@@ -58,5 +59,23 @@ module.exports = {
                 }
                 throw err;
             })
+    },
+
+    readAll: () => {
+        const table = 'user';
+        const query = `SELECT * FROM ${table}`
+        // 쿼리하나를 보내므로 None
+        return pool.queryParam_None(query)
+            .then(result => {
+                return {
+                    code: sc.OK,
+                    json: au.successTrue("회원 읽기 성공", result)
+                };
+            })
+            .catch(err => {
+                console.log(err);
+                // throw로 상위 모듈로 보내준다.
+                throw err;
+            });
     }
 }

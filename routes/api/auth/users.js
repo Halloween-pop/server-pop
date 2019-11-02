@@ -1,18 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const session = require('express-session');
 const au = require('../../../modules/util/authUtil');
 const sc = require('../../../modules/util/statusCode');
 const rm = require('../../../modules/util/responseMessage');
 const User = require('../../../models/User');
-// const session = require('express-session');
-
-// app.use(session({
-//     secret: 'sopt#$#maan#@$@#',
-//     resave: true,
-//     saveUninitialized: true
-// }));
-
 
 router.get('/read', (req, res) => {
     User.readAll()
@@ -36,7 +27,6 @@ router.post('/signup', (req, res) => {
     }
     User.signup({id, password, nickname})
     .then(({code, json}) => {
-        // req.session.userIdx = json["data"];
         res.status(code).send(json);
     })
     .catch(err => {

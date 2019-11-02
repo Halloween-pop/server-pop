@@ -1,21 +1,19 @@
 const express = require('express');
 const router = express.Router();
-
 const au = require('../../../modules/util/authUtil');
 const rm = require('../../../modules/util/responseMessage');
 const sc = require('../../../modules/util/statusCode');
-
 const Score = require('../../../models/Score');
 
-router.put('/', async (req, res) => {
+router.put('/:userIdx', async (req, res) => {
     // const userIdx = req.session.userIdx;    // session
-    const {stage, scores, userIdx} = req.body;
+    const {stage, scores} = req.body;
+    const userIdx = req.params.userIdx;
     console.log(scores)
     console.log(userIdx);
     
-
     // TODO 1: blogName 값 확인하기
-    if (!stage || !score || !userIdx) res.status(sc.BAD_REQUEST).send(au.successFalse(rm.NULL_VALUE));
+    if (!stage || !score ) res.status(sc.BAD_REQUEST).send(au.successFalse(rm.NULL_VALUE));
 
     // TODO 2: 작성하기
     try {

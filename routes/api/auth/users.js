@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const session = require('express-session');
 const au = require('../../../modules/util/authUtil');
 const sc = require('../../../modules/util/statusCode');
 const rm = require('../../../modules/util/responseMessage');
+const encrypt = require('../../../modules/util/encryption');
 const User = require('../../../models/User');
 
 router.get('/read', (req, res) => {
@@ -26,13 +26,20 @@ router.post('/signup', (req, res) => {
         .send(au.successFalse(`${rm.NULL_VALUE} 없는 값은 ${miss} 입니다`));
         return;
     }
-    User.signup({id, password, nickname})
-    .then(({code, json}) => {
-        res.status(code).send(json)
-    })
+    encrypt.encrypt(password)
+    .then(({hashed, salt}) => User.signup({id, nickname, salt, password: hashed}))
+    .then(({code, json}) => res.status(code).send(json))
     .catch(err => {
         res.status(sc.INTERNAL_SERVER_ERROR, au.successFalse(rm.INTERNAL_SERVER_ERROR))
     });
+
+    // User.signup({id, password, nickname})
+    // .then(({code, json}) => {
+    //     res.status(code).send(json);
+    // })
+    // .catch(err => {
+    //     res.status(sc.INTERNAL_SERVER_ERROR, au.successFalse(rm.INTERNAL_SERVER_ERROR))
+    // });
 });
 
 router.post('/signin', (req, res) => {

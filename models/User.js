@@ -2,7 +2,7 @@ const au = require('../modules/util/authUtil');
 const sc = require('../modules/util/statusCode');
 const rm = require('../modules/util/responseMessage');
 const pool = require('../modules/db/pool');
-// const encrypt = require('../module/encryption');
+const encrypt = require('../modules/util/encryption');
 
 const table = 'user';
 
@@ -19,7 +19,10 @@ module.exports = {
                 }
                 console.log(userReturn);
                 const user = userReturn[0];
-                if(user.password != password) {
+                const {
+                    hashed
+                } = await encrypt.encryptWithSalt(password, user.salt);
+                if(user.password != hashed) {
                     return {
                         code: sc.BAD_REQUEST,
                         json: au.successFalse(rm.MISS_MATCH_PW)
@@ -35,13 +38,12 @@ module.exports = {
             });
     },
 
-    signup: ({id, password, nickname}) => {
-        const fields = 'id, password, nickname';
-        const questions = `?,?,?`;
-        const values = [id, password, nickname];
+    signup: ({id, nickname, salt, password}) => {
+        const fields = 'id, password, salt, nickname';
+        const questions = `?,?,?,?`;
+        const values = [id, password, salt, nickname];
         return pool.queryParam_Parse(`INSERT INTO ${table}(${fields}) VALUES(${questions})`, values)
             .then(result => {
-                console.log('???-')
                 if(result.code && result.json) return result;
                 const userId = result.insertId;
                 return {

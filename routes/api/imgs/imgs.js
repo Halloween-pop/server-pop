@@ -70,27 +70,27 @@ router.get('/:stage', (req, res) => {
         json = {
             // debug in local
             // lst: [
-            //     'http://localhost:3000/images/saveimg/section-1.jpg',
-            //     'http://localhost:3000/images/saveimg/section-2.jpg',
-            //     'http://localhost:3000/images/saveimg/section-3.jpg',
-            //     'http://localhost:3000/images/saveimg/section-4.jpg',
-            //     'http://localhost:3000/images/saveimg/section-5.jpg',
-            //     'http://localhost:3000/images/saveimg/section-6.jpg',
-            //     'http://localhost:3000/images/saveimg/section-7.jpg',
-            //     'http://localhost:3000/images/saveimg/section-8.jpg',
-            //     'http://localhost:3000/images/saveimg/section-9.jpg'
+            //     'http://localhost:3000/images/saveImg/section-1.jpg',
+            //     'http://localhost:3000/images/saveImg/section-2.jpg',
+            //     'http://localhost:3000/images/saveImg/section-3.jpg',
+            //     'http://localhost:3000/images/saveImg/section-4.jpg',
+            //     'http://localhost:3000/images/saveImg/section-5.jpg',
+            //     'http://localhost:3000/images/saveImg/section-6.jpg',
+            //     'http://localhost:3000/images/saveImg/section-7.jpg',
+            //     'http://localhost:3000/images/saveImg/section-8.jpg',
+            //     'http://localhost:3000/images/saveImg/section-9.jpg'
             // ]
 
             lst: [
-                'http://3.215.131.244:3000/images/saveimg/section-1.jpg',
-                'http://3.215.131.244:3000/images/saveimg/section-2.jpg',
-                'http://3.215.131.244:3000/images/saveimg/section-3.jpg',
-                'http://3.215.131.244:3000/images/saveimg/section-4.jpg',
-                'http://3.215.131.244:3000/images/saveimg/section-5.jpg',
-                'http://3.215.131.244:3000/images/saveimg/section-6.jpg',
-                'http://3.215.131.244:3000/images/saveimg/section-7.jpg',
-                'http://3.215.131.244:3000/images/saveimg/section-8.jpg',
-                'http://3.215.131.244:3000/images/saveimg/section-9.jpg'
+                'http://3.215.131.244:3000/images/saveImg/section-1.jpg',
+                'http://3.215.131.244:3000/images/saveImg/section-2.jpg',
+                'http://3.215.131.244:3000/images/saveImg/section-3.jpg',
+                'http://3.215.131.244:3000/images/saveImg/section-4.jpg',
+                'http://3.215.131.244:3000/images/saveImg/section-5.jpg',
+                'http://3.215.131.244:3000/images/saveImg/section-6.jpg',
+                'http://3.215.131.244:3000/images/saveImg/section-7.jpg',
+                'http://3.215.131.244:3000/images/saveImg/section-8.jpg',
+                'http://3.215.131.244:3000/images/saveImg/section-9.jpg'
             ]
         }
         res.send(json);

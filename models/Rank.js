@@ -22,7 +22,7 @@ rank = {
         }
         return {
             code: sc.OK,
-            json: au.successTrue(rm.BOARD_READ_ALL_SUCCESS, result)
+            json: result
         };
     }
 }

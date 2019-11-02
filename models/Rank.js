@@ -10,7 +10,7 @@ const table = 'user';
 // exports
 rank = {
     selectAll: async () => {
-        const query = `SELECT id, total FROM ${table} WHERE total > 0 ORDER BY total LIMIT 10`;
+        const query = `SELECT id, total FROM ${table} WHERE total > 0 ORDER BY total ASC LIMIT 10`;
         const result = await pool.queryParam_None(query);
 
         // running

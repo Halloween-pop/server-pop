@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const session = require('express-session');
 const au = require('../../../modules/util/authUtil');
 const sc = require('../../../modules/util/statusCode');
 const rm = require('../../../modules/util/responseMessage');
@@ -28,7 +27,7 @@ router.post('/signup', (req, res) => {
     }
     User.signup({id, password, nickname})
     .then(({code, json}) => {
-        res.status(code).send(json)
+        res.status(code).send(json);
     })
     .catch(err => {
         res.status(sc.INTERNAL_SERVER_ERROR, au.successFalse(rm.INTERNAL_SERVER_ERROR))

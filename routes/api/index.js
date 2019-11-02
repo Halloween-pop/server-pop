@@ -3,7 +3,7 @@ const router = express.Router();
 
 
 router.use('/auth', require('./auth'));
-router.use('/img', require('./img'));
+router.use('/imgs', require('./imgs'));
 router.use('/result', require('./result'));
 
 module.exports = router;

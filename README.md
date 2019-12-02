@@ -42,8 +42,8 @@
     "image-to-slices": "^0.1.3"
   }
 ```
-클라이언트에서 stage에 대한 요청이 있을 때 image-to-slices package를 사용해서 이미지를 9등분으로 나눠서 클라이언트로 전송해주었다.
-\
+> 클라이언트에서 stage에 대한 요청이 있을 때 image-to-slices package를 사용해서 이미지를 9등분으로 나눠서 클라이언트로 전송해주었다.
+
 \
 []()
 ```json
@@ -52,8 +52,8 @@
     "pbkdf2": "^3.0.17"
 }
 ```
-encrypt와 pbkdf2 패키지를 이용한 암호화를 통해 로그인 보안을 강화하였다.
-\
+> encrypt와 pbkdf2 패키지를 이용한 암호화를 통해 로그인 보안을 강화하였다.
+
 \
 []()
 ```json
@@ -61,8 +61,8 @@ encrypt와 pbkdf2 패키지를 이용한 암호화를 통해 로그인 보안을
     "promise-mysql": "^4.1.1",
 }
 ```
-AWS RDS를 이용해서 MySQL을 비동기적으로 사용하였다.
-\
+> AWS RDS를 이용해서 MySQL을 비동기적으로 사용하였다.
+
 \
 []()
 

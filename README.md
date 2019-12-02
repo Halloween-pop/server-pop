@@ -15,22 +15,24 @@
 \
 []()
 ## Info
-### Features
+**Features**
 * **AWS-EC2로 배포.**
 * 암호화를 이용한 로그인 기능.
 * 클리어 시간을 기준으로 한 score 등록.
 * 모든 stage를 클리어한 경우 ranking 등록 및 기록 재갱신 기능.
-\
+
+
 \
 \
 []()
-### API Description
+**API Description**
 * [API 명세서 링크](https://github.com/SOLscript/SOLscript_server/wiki)
-\
+
+
 \
 \
 []()
-### Mock up Img
+**Mock up Img**
 ![image](./readmeImg/mockupImg.png)
 \
 \
@@ -84,4 +86,4 @@ AWS RDS를 이용해서 MySQL을 비동기적으로 사용하였다.
 
 | Login | Game |
 |:---:|:---:|
-| ![image](./readmeImg/login.png)|![image](./readmeImg/game.png) |
+|<img src="./readmeImg/login.png" width=70%>|<img src="./readmeImg/game.png" width=70%>|

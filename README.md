@@ -10,8 +10,7 @@
 \
 \
 []()
-## Info
-**Features**
+## Features
 * **AWS-EC2로 배포.**
 * 암호화를 이용한 로그인 기능.
 * 클리어 시간을 기준으로 한 score 등록.
@@ -19,13 +18,13 @@
 
 \
 []()
-**API Description**
+## API Description
 * [API 명세서 링크](https://github.com/SOLscript/SOLscript_server/wiki)
 
 
 \
 []()
-**Mock up Img**
+## Mock up Img
 ![image](./readmeImg/mockupImg.png)
 \
 \

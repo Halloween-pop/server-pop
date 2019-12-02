@@ -23,13 +23,11 @@
 
 
 \
-\
 []()
 **API Description**
 * [API 명세서 링크](https://github.com/SOLscript/SOLscript_server/wiki)
 
 
-\
 \
 []()
 **Mock up Img**
@@ -54,7 +52,6 @@
 클라이언트에서 각 stage에 대한 요청이 있을 때 image-to-slices package를 사용해서 이미지를 9등분으로 나눠서 클라이언트로 전송해주었다.
 \
 \
-\
 []()
 ```json
 "dependencies": {
@@ -63,7 +60,6 @@
 }
 ```
 encrypt와 pbkdf2 패키지를 이용한 암호화를 통해 로그인 보안을 강화하였다.
-\
 \
 \
 []()

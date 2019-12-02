@@ -13,9 +13,8 @@
 \
 \
 \
-\
 []()
-# Info
+## Info
 ### Features
 * **AWS-EC2로 배포.**
 * 암호화를 이용한 로그인 기능.
@@ -41,9 +40,8 @@
 \
 \
 \
-\
 []()
-# Usage Package
+## Usage Package
 
 ```json
 "dependencies": {
@@ -82,7 +80,7 @@ AWS RDS를 이용해서 MySQL을 비동기적으로 사용하였다.
 \
 \
 []()
- # Application Image
+## Application Image
 
 | Login | Game |
 |:---:|:---:|

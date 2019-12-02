@@ -19,7 +19,7 @@
 \
 []()
 ## API Description
-* [API 명세서 링크](https://github.com/SOLscript/SOLscript_server/wiki)
+* [API 명세서 링크](https://github.com/Halloween-pop/server-pop/wiki)
 
 
 \
@@ -60,6 +60,7 @@ encrypt와 pbkdf2 패키지를 이용한 암호화를 통해 로그인 보안을
 }
 ```
 AWS RDS를 이용해서 MySQL을 비동기적으로 사용하였다.
+\
 \
 []()
 
